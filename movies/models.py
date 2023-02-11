@@ -24,10 +24,11 @@ class Movie(SoftDeleteModel):
     plot = models.TextField()
     rating = models.FloatField(
         validators=[MinValueValidator(0.0), MaxValueValidator(10.0)],
+        default=0.0,
     )
     runtime = models.DurationField()
-    rental_price = models.IntegerField(default=0)
-    purchase_price = models.IntegerField(default=0)
+    rental_price = models.DecimalField(default=0.0, decimal_places=2, max_digits=10)
+    purchase_price = models.DecimalField(default=0.0, decimal_places=2, max_digits=10)
 
     def __str__(self):
         return self.title
