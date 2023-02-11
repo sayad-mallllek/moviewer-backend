@@ -4,6 +4,12 @@ from .models import Movie, Genre, MovieDisplayTimes
 
 
 class MovieSerializer(serializers.ModelSerializer):
+
+    display_times = serializers.SerializerMethodField()
+
+    def get_display_times(self, obj):
+        return [dt.display_time for dt in obj.moviedisplaytimes_set.all()]
+
     class Meta:
         model = Movie
         fields = (
@@ -16,5 +22,5 @@ class MovieSerializer(serializers.ModelSerializer):
             "plot",
             "rental_price",
             "purchase_price",
-            # "display_times",
+            "display_times",
         )
