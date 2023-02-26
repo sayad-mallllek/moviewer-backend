@@ -2,7 +2,7 @@ from django.db import models
 from moviewer.utils import SoftDeleteModel
 
 
-class Users(SoftDeleteModel):
+class User(SoftDeleteModel):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     username = models.CharField(max_length=100, unique=True)

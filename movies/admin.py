@@ -19,7 +19,7 @@ class MovieDisplayTimesInline(admin.TabularInline):
 class MovieAdmin(admin.ModelAdmin):
     list_display = ("title", "year", "director")
     inlines = (MovieDisplayTimesInline,)
-    exclude = ("rating",)
+    exclude = ("rating", "is_deleted")
 
     def get_form(self, request, obj=None, **kwargs):
         # get base form object
