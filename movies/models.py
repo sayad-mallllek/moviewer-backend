@@ -3,6 +3,10 @@ from moviewer.utils import SoftDeleteModel
 from django.db import models
 
 
+class InitialMovieDump(SoftDeleteModel):
+    has_been_dumped = models.BooleanField(default=False)
+
+
 class Genre(SoftDeleteModel):
     name = models.CharField(max_length=100)
 
