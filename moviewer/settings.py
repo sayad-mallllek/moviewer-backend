@@ -37,6 +37,7 @@ ALLOWED_HOSTS = ["*"]
 INSTALLED_APPS = [
     "users.apps.UsersConfig",
     "movies.apps.MoviesConfig",
+    "jazzmin",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -44,7 +45,15 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
+    "django_extensions",
 ]
+JAZZMIN_SETTINGS = {"show_ui_builder": True}
+
+JAZZMIN_UI_TWEAKS = {
+    "theme": "slate",
+    # "theme": "cosmo",
+    # "dark_mode_theme": "superhero",
+}
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -82,8 +91,12 @@ WSGI_APPLICATION = "moviewer.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.environ.get("DB_NAME"),
+        "HOST": os.environ.get("DB_HOST"),
+        "USER": os.environ.get("DB_USER"),
+        "PORT": os.environ.get("DB_PORT"),
+        "PASSWORD": os.environ.get("DB_PASSWORD"),
     }
 }
 
